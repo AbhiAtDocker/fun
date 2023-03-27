@@ -1,0 +1,52 @@
+# Auth URLs
+AUTHENTICATION_SERVER_BASE_URL: https://authentication-master-b3388-burner-ci.dev1.censhare.com
+AUTH_OPENID_URL: ${AUTHENTICATION_SERVER_BASE_URL}/auth/realms/censhare/protocol/openid-connect
+
+master-data-client:
+  master-data-service-url: https://masterdata-default-ets.censhare.com
+  cache:
+    enabled: true
+    maximal-entries-count: 1000
+    invalidation-by-kafka:
+      enabled: false
+    invalidate-after-access:
+      seconds: 600
+
+##server:
+##  port: 8090
+
+##spring:
+##  zipkin:
+##    enabled: false
+##  security:
+##    oauth2:
+##      resourceserver:
+##        jwt:
+##          jwk-set-uri: ${AUTH_OPENID_URL}/certs
+##      client:
+##        registration:
+##          default:
+##            client-id: censhare5
+##            client-secret: 33bb4fe6-da3a-4c52-beec-b8fa7f30746c
+##            client-name: sample-master-data-app
+##            authorization-grant-type: client_credentials
+##        provider:
+##          default:
+##            authorization-uri: ${AUTH_OPENID_URL}/auth
+##            token-uri: ${AUTH_OPENID_URL}/token
+##            user-info-uri: ${AUTH_OPENID_URL}/userinfo
+##            jwk-set-uri: ${AUTH_OPENID_URL}/certs
+##            user-name-attribute: preferred_username
+##  codec:
+##    max-in-memory-size: 2MB
+##  cloud:
+##    stream:
+##      kafka:
+##        binder:
+##          brokers: message-queue-service:9092
+##          autoCreateTopics: false
+##      bindings:
+##        cacheUpdatesListener-in-0:
+##          binder: kafka
+##          destination: masterdata-service-topic
+##          content-type: application/json
